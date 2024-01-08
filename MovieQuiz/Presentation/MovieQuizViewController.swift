@@ -37,6 +37,9 @@ final class MovieQuizViewController: UIViewController {
         
         super.viewDidLoad()
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     private var currentQuestionIndex = 0
     private var correctAnswers = 0
     private let questions: [QuizQuestion] = [
@@ -105,6 +108,8 @@ final class MovieQuizViewController: UIViewController {
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
         imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
+        yesButton.isEnabled = false
+        noButton.isEnabled = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.showNextQuestionOrResults()
@@ -112,6 +117,8 @@ final class MovieQuizViewController: UIViewController {
     }
     
     private func showNextQuestionOrResults() {
+        yesButton.isEnabled = true
+        noButton.isEnabled = true
         if currentQuestionIndex == questions.count - 1 {
             let text = "Ваш результат: \(correctAnswers)/10" // 1
             let viewModel = QuizResultViewModel( // 2
