@@ -1,18 +1,18 @@
 import UIKit
 
-struct QuizStepViewModel {
+private struct QuizStepViewModel {
     let image: UIImage
     let question: String
     let questionNumber: String
 }
 
-struct QuizQuestion {
+private struct QuizQuestion {
     let image: String
     let text: String
     let correctAnswer: Bool
 }
 
-struct QuizResultViewModel {
+private struct QuizResultViewModel {
     let title: String
     let text: String
     let buttonText: String
@@ -32,6 +32,8 @@ final class MovieQuizViewController: UIViewController {
         questionLabel.font = UIFont(name: "YSDisplay-Medium", size: 20)
         textLabel.font = UIFont(name: "YSDisplay-Bold", size: 23)
         counterLabel.font = UIFont(name: "YSDisplay-Medium", size: 20)
+        imageView.layer.cornerRadius = 20.0
+        imageView.clipsToBounds = true
         let currentQuestion = questions[currentQuestionIndex]
         show(quiz: convert(model: currentQuestion))
         
@@ -89,7 +91,7 @@ final class MovieQuizViewController: UIViewController {
         imageView.image = step.image
         textLabel.text = step.question
         counterLabel.text = step.questionNumber
-        imageView.layer.borderColor = UIColor.ypWhite.cgColor
+        imageView.layer.borderColor = UIColor.clear.cgColor
     }
     
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
