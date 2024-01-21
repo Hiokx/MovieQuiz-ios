@@ -12,23 +12,23 @@ class QuestionFactory {
     private let questions: [QuizQuestion] = [
         QuizQuestion(
             image: "The Godfather",
-            text: "Рейтинг этого фильма больше чем 6?",
+            text: "Рейтинг этого фильма больше чем 1?",
             correctAnswer: true),
         QuizQuestion(
             image: "The Dark Knight",
-            text: "Рейтинг этого фильма больше чем 6?",
+            text: "Рейтинг этого фильма больше чем 2?",
             correctAnswer: true),
         QuizQuestion(
             image: "Kill Bill",
-            text: "Рейтинг этого фильма больше чем 6?",
+            text: "Рейтинг этого фильма больше чем 3?",
             correctAnswer: true),
         QuizQuestion(
             image: "The Avengers",
-            text: "Рейтинг этого фильма больше чем 6?",
+            text: "Рейтинг этого фильма больше чем 4?",
             correctAnswer: true),
         QuizQuestion(
             image: "Deadpool",
-            text: "Рейтинг этого фильма больше чем 6?",
+            text: "Рейтинг этого фильма больше чем 5?",
             correctAnswer: true),
         QuizQuestion(
             image: "The Green Knight",
@@ -36,19 +36,19 @@ class QuestionFactory {
             correctAnswer: true),
         QuizQuestion(
             image: "Old",
-            text: "Рейтинг этого фильма больше чем 6?",
+            text: "Рейтинг этого фильма больше чем 7?",
             correctAnswer: false),
         QuizQuestion(
             image: "The Ice Age Adventures of Buck Wild",
-            text: "Рейтинг этого фильма больше чем 6?",
+            text: "Рейтинг этого фильма больше чем 8?",
             correctAnswer: false),
         QuizQuestion(
             image: "Tesla",
-            text: "Рейтинг этого фильма больше чем 6?",
+            text: "Рейтинг этого фильма больше чем 9?",
             correctAnswer: false),
         QuizQuestion(
             image: "Vivarium",
-            text: "Рейтинг этого фильма больше чем 6?",
+            text: "Рейтинг этого фильма больше чем 10?",
             correctAnswer: false)
     ]
     
@@ -56,8 +56,8 @@ class QuestionFactory {
         guard let index = (0..<questions.count).randomElement() else {
             return nil
         }
-        print("alert")
         return questions[safe: index]
+       
         
     }
 }

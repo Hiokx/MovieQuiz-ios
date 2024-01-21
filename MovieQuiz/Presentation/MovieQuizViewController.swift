@@ -30,7 +30,6 @@ final class MovieQuizViewController: UIViewController {
             show(quiz: viewModel)
             
         }
-        // show(quiz: convert(model: currentQuestion))
         
         super.viewDidLoad()
     }
@@ -82,7 +81,7 @@ final class MovieQuizViewController: UIViewController {
             show(quiz: viewModel)
         } else {
             currentQuestionIndex += 1
-            guard let nextQuestion = currentQuestion else {
+            guard let nextQuestion = questionFactory.requestNextQuestion() else {
                 return
             }
             let viewModel = convert(model: nextQuestion)
@@ -116,7 +115,6 @@ final class MovieQuizViewController: UIViewController {
             return
         }
         let givenAnswer = true
-        
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
     
