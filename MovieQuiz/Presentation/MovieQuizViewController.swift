@@ -1,6 +1,6 @@
 import UIKit
 
-final class MovieQuizViewController: UIViewController {
+final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     // MARK: - Lifecycle
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var textLabel: UILabel!
@@ -13,8 +13,8 @@ final class MovieQuizViewController: UIViewController {
     private var correctAnswers = 0
     
     private let questionsAmount: Int = 10
-    private var questionFactory: QuestionFactory = QuestionFactory()
     private var currentQuestion: QuizQuestion?
+    private let questionFactory: QuestionFactoryProtocol = QuestionFactory()
     
     override func viewDidLoad() {
         yesButton.titleLabel?.font = UIFont(name: "YSDisplay-Medium", size: 20)
@@ -24,19 +24,30 @@ final class MovieQuizViewController: UIViewController {
         counterLabel.font = UIFont(name: "YSDisplay-Medium", size: 20)
         imageView.layer.cornerRadius = 20.0
         imageView.clipsToBounds = true
-        if let firstQuestion = questionFactory.requestNextQuestion(){
-            currentQuestion = firstQuestion
-            let viewModel = convert(model: firstQuestion)
-            show(quiz: viewModel)
-            
-        }
+        
+        questionFactory.delegate = self
+        questionFactory.requestNextQuestion()
+        
         
         super.viewDidLoad()
     }
+    // MARK: - QuestionFactoryDelegate
+    func didReceiveNextQuestion(question: QuizQuestion?) {
+        guard let question = question else {
+            return
+        }
+        
+        currentQuestion = question
+        let viewModel = convert(model: question)
+        DispatchQueue.main.async { [weak self] in
+            self?.show(quiz: viewModel)
+        }
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
     private func show(quiz step: QuizStepViewModel) {
         imageView.image = step.image
         textLabel.text = step.question
@@ -81,12 +92,7 @@ final class MovieQuizViewController: UIViewController {
             show(quiz: viewModel)
         } else {
             currentQuestionIndex += 1
-            guard let nextQuestion = questionFactory.requestNextQuestion() else {
-                return
-            }
-            let viewModel = convert(model: nextQuestion)
-            imageView.layer.borderColor = UIColor.ypWhite.cgColor
-            show(quiz: viewModel)
+            self.questionFactory.requestNextQuestion()
         }
     }
     
@@ -98,11 +104,7 @@ final class MovieQuizViewController: UIViewController {
         let action = UIAlertAction(title: result.buttonText, style: .default) { [weak self] _ in guard let self = self else { return }
             self.currentQuestionIndex = 0
             self.correctAnswers = 0
-            if let firstQuestion = self.questionFactory.requestNextQuestion() {
-                self.currentQuestion = firstQuestion
-                let viewModel = self.convert(model: firstQuestion)
-                self.show(quiz: viewModel)
-            }
+            questionFactory.requestNextQuestion()
         }
         
         alert.addAction(action)

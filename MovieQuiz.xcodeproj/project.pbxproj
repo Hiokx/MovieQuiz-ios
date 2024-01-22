@@ -11,6 +11,8 @@
 		5D7F64E62B5C2CE400B7A6E8 /* QuizStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F64E52B5C2CE400B7A6E8 /* QuizStepViewModel.swift */; };
 		5D7F64E82B5C2CF600B7A6E8 /* QuizResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F64E72B5C2CF600B7A6E8 /* QuizResultsViewModel.swift */; };
 		5D7F64EA2B5C2D0300B7A6E8 /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F64E92B5C2D0300B7A6E8 /* QuizQuestion.swift */; };
+		5D7F64EC2B5D697900B7A6E8 /* QuestionFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F64EB2B5D697900B7A6E8 /* QuestionFactoryProtocol.swift */; };
+		5D7F64EE2B5D6FF900B7A6E8 /* QuestionFactoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F64ED2B5D6FF900B7A6E8 /* QuestionFactoryDelegate.swift */; };
 		5D9194CA2B4990D7002BA585 /* YS Display-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D9194C82B4990D7002BA585 /* YS Display-Bold.ttf */; };
 		5D9194CB2B4990D7002BA585 /* YS Display-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D9194C92B4990D7002BA585 /* YS Display-Medium.ttf */; };
 		AD1ABAB22831907B00B3E448 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1ABAB12831907B00B3E448 /* AppDelegate.swift */; };
@@ -29,6 +31,8 @@
 		5D7F64E52B5C2CE400B7A6E8 /* QuizStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizStepViewModel.swift; sourceTree = "<group>"; };
 		5D7F64E72B5C2CF600B7A6E8 /* QuizResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultsViewModel.swift; sourceTree = "<group>"; };
 		5D7F64E92B5C2D0300B7A6E8 /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
+		5D7F64EB2B5D697900B7A6E8 /* QuestionFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFactoryProtocol.swift; sourceTree = "<group>"; };
+		5D7F64ED2B5D6FF900B7A6E8 /* QuestionFactoryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionFactoryDelegate.swift; sourceTree = "<group>"; };
 		5D9194C82B4990D7002BA585 /* YS Display-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Bold.ttf"; sourceTree = "<group>"; };
 		5D9194C92B4990D7002BA585 /* YS Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Medium.ttf"; sourceTree = "<group>"; };
 		AD1ABAAE2831907B00B3E448 /* MovieQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,7 +62,9 @@
 		5D7F64E12B5C29F600B7A6E8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5D7F64EB2B5D697900B7A6E8 /* QuestionFactoryProtocol.swift */,
 				5D7F64E22B5C2A3C00B7A6E8 /* QuestionFactory.swift */,
+				5D7F64ED2B5D6FF900B7A6E8 /* QuestionFactoryDelegate.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -170,7 +176,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					AD1ABAAD2831907B00B3E448 = {
@@ -218,6 +224,8 @@
 			files = (
 				AD5EE5DE284D7887003966EF /* UIColor+Extensions.swift in Sources */,
 				AD7AFA552836189F00399704 /* Array+Extensions.swift in Sources */,
+				5D7F64EC2B5D697900B7A6E8 /* QuestionFactoryProtocol.swift in Sources */,
+				5D7F64EE2B5D6FF900B7A6E8 /* QuestionFactoryDelegate.swift in Sources */,
 				AD1ABAB62831907B00B3E448 /* MovieQuizViewController.swift in Sources */,
 				5D7F64E62B5C2CE400B7A6E8 /* QuizStepViewModel.swift in Sources */,
 				5D7F64EA2B5C2D0300B7A6E8 /* QuizQuestion.swift in Sources */,
@@ -287,6 +295,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -347,6 +356,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
